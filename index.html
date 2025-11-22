@@ -436,8 +436,41 @@
             display: block;
         }
 
-        .notification.error {
-            background: #dc3545;
+        .save-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            z-index: 500;
+            display: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        .save-indicator.show {
+            display: block;
+            animation: fadeInOut 2s;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            20%, 80% { opacity: 1; }
+        }
+
+        .backup-section {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #ffc107;
+        }
+
+        .backup-section h4 {
+            color: #856404;
+            margin-bottom: 10px;
         }
 
         .footer {
@@ -984,6 +1017,7 @@
                 price: parseFloat(document.getElementById('productPrice').value)
             };
             products.push(product);
+            saveData();
             updateInventoryDisplay();
             hideModal();
             showNotification('Product added successfully!');
@@ -1014,6 +1048,7 @@
         function deleteProduct(id) {
             if (confirm('Delete this product?')) {
                 products = products.filter(p => p.id !== id);
+                saveData();
                 updateInventoryDisplay();
                 showNotification('Product deleted');
             }
@@ -1081,6 +1116,7 @@
                 date: document.getElementById('transDate').value
             };
             transactions.push(trans);
+            saveData();
             updateAccountingDisplay();
             hideModal();
             showNotification('Transaction added successfully!');
@@ -1131,6 +1167,7 @@
         function deleteTransaction(id) {
             if (confirm('Delete this transaction?')) {
                 transactions = transactions.filter(t => t.id !== id);
+                saveData();
                 updateAccountingDisplay();
                 showNotification('Transaction deleted');
             }
@@ -1214,6 +1251,7 @@
                 basicSalary: parseFloat(document.getElementById('empSalary').value)
             };
             employees.push(emp);
+            saveData();
             updatePayrollDisplay();
             hideModal();
             showNotification('Employee added successfully!');
@@ -1264,6 +1302,7 @@
         function deleteEmployee(id) {
             if (confirm('Delete this employee?')) {
                 employees = employees.filter(e => e.id !== id);
+                saveData();
                 updatePayrollDisplay();
                 showNotification('Employee deleted');
             }
@@ -1328,6 +1367,7 @@
                 totalPurchases: 0
             };
             customers.push(cust);
+            saveData();
             updateCustomerDisplay();
             hideModal();
             showNotification('Customer added successfully!');
@@ -1356,6 +1396,7 @@
         function deleteCustomer(id) {
             if (confirm('Delete this customer?')) {
                 customers = customers.filter(c => c.id !== id);
+                saveData();
                 updateCustomerDisplay();
                 showNotification('Customer deleted');
             }
@@ -1419,6 +1460,7 @@
             };
             invoices.push(invoice);
             
+            saveData();
             updateInventoryDisplay();
             updateCustomerDisplay();
             hideModal();
@@ -1477,6 +1519,7 @@
                 startDate: document.getElementById('woDate').value
             };
             workOrders.push(wo);
+            saveData();
             updateProductionDisplay();
             hideModal();
             showNotification('Work order created successfully!');
@@ -1516,6 +1559,7 @@
                 updateInventoryDisplay();
             }
             
+            saveData();
             updateProductionDisplay();
             showNotification('Work order completed! Stock updated.');
         }
@@ -1523,6 +1567,7 @@
         function deleteWorkOrder(id) {
             if (confirm('Delete this work order?')) {
                 workOrders = workOrders.filter(wo => wo.id !== id);
+                saveData();
                 updateProductionDisplay();
                 showNotification('Work order deleted');
             }
@@ -1612,6 +1657,7 @@
                 description: document.getElementById('docDesc').value || 'N/A'
             };
             documents.push(doc);
+            saveData();
             updateDocumentDisplay();
             hideModal();
             showNotification('Document uploaded successfully!');
@@ -1638,6 +1684,7 @@
         function deleteDocument(id) {
             if (confirm('Delete this document?')) {
                 documents = documents.filter(d => d.id !== id);
+                saveData();
                 updateDocumentDisplay();
                 showNotification('Document deleted');
             }
