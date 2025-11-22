@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Business ERP Solution - Philippines</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0062cc 0%, #004494 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".1" fill="%23ffffff"/></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.1;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: white;
+            margin: 40px 0;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            color: #0062cc;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #0062cc, #00d4ff);
+            border-radius: 2px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .feature-item:hover {
+            border-color: #0062cc;
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,98,204,0.15);
+        }
+
+        .feature-item.active {
+            border-color: #28a745;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0062cc 0%, #00d4ff 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,98,204,0.3);
+        }
+
+        .feature-item h3 {
+            color: #0062cc;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+
+        .feature-item p {
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .benefits-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+
+        .benefits-section h2 {
+            color: white;
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 40px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .benefit-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .benefit-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+
+        .benefit-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .modules-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .module-badge {
+            background: white;
+            border: 2px solid #0062cc;
+            color: #0062cc;
+            padding: 15px 20px;
+            border-radius: 30px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .module-badge:hover {
+            background: #0062cc;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,98,204,0.3);
+        }
+
+        .module-badge.selected {
+            background: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #28a745;
+            padding: 18px 50px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .stat-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0,98,204,0.2);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer p {
+            margin: 10px 0;
+            opacity: 0.8;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.3s;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .modal h2 {
+            color: #0062cc;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .modal p {
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .modal ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .modal li {
+            margin: 10px 0;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 2000;
+            display: none;
+            animation: slideInRight 0.3s;
+        }
+
+        .notification.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .form-group {
+            margin: 20px 0;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0062cc;
+        }
+
+        .submit-btn {
+            background: #0062cc;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #004494;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .section {
+                padding: 30px 20px;
+            }
+
+            .section-title {
+                font-size: 1.8em;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>🚀 Complete Business Management Solution</h1>
+        <p>Powerful ERP System Designed for Filipino Businesses of All Sizes and Industries</p>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2 class="section-title">All the Features Your Company Needs</h2>
+            <div class="feature-grid">
+                <div class="feature-item" data-feature="inventory">
+                    <div class="feature-icon">📦</div>
+                    <h3>Inventory Management</h3>
+                    <p>Complete control over your stock levels, warehouse management, and supply chain operations.</p>
+                </div>
+                <div class="feature-item" data-feature="production">
+                    <div class="feature-icon">🏭</div>
+                    <h3>Production Control</h3>
+                    <p>Streamline manufacturing processes and optimize production workflows for maximum efficiency.</p>
+                </div>
+                <div class="feature-item" data-feature="accounting">
+                    <div class="feature-icon">💼</div>
+                    <h3>Accounting System</h3>
+                    <p>Full-featured accounting compliant with Philippine tax laws and regulations.</p>
+                </div>
+                <div class="feature-item" data-feature="payroll">
+                    <div class="feature-icon">💰</div>
+                    <h3>Payroll Management</h3>
+                    <p>Automated payroll processing with Philippine tax computation and compliance.</p>
+                </div>
+                <div class="feature-item" data-feature="groupware">
+                    <div class="feature-icon">📧</div>
+                    <h3>Groupware & Webmail</h3>
+                    <p>Integrated communication tools to keep your team connected and productive.</p>
+                </div>
+                <div class="feature-item" data-feature="workflow">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Customizable Workflow</h3>
+                    <p>Configure the program environment to match your company's unique business processes.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Suitable for All Industries</h2>
+            <div class="stats-row">
+                <div class="stat-box" data-industry="manufacturing">
+                    <span class="stat-number">🏭</span>
+                    <span class="stat-label">Manufacturing</span>
+                </div>
+                <div class="stat-box" data-industry="distribution">
+                    <span class="stat-number">📦</span>
+                    <span class="stat-label">Distribution</span>
+                </div>
+                <div class="stat-box" data-industry="services">
+                    <span class="stat-number">🛎️</span>
+                    <span class="stat-label">Services</span>
+                </div>
+                <div class="stat-box" data-industry="trade">
+                    <span class="stat-number">🌐</span>
+                    <span class="stat-label">Trade</span>
+                </div>
+                <div class="stat-box" data-industry="nonprofit">
+                    <span class="stat-number">🤝</span>
+                    <span class="stat-label">Non-Profit</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="benefits-section">
+            <h2>Additional Convenient Features Included</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card" data-benefit="store">
+                    <h3>🛒 Online Store Management</h3>
+                    <p>Manage your e-commerce operations seamlessly - absolutely free of charge!</p>
+                </div>
+                <div class="benefit-card" data-benefit="contract">
+                    <h3>📝 e-Contract System</h3>
+                    <p>Digital contract management and electronic signatures included at no extra cost.</p>
+                </div>
+                <div class="benefit-card" data-benefit="allinone">
+                    <h3>📱 All-in-One Platform</h3>
+                    <p>Manage everything without the need for additional programs or subscriptions.</p>
+                </div>
+                <div class="benefit-card" data-benefit="learn">
+                    <h3>🎯 Click & Learn</h3>
+                    <p>Click on feature icons to learn more about each functionality in detail.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Reports Customized with the Information You Need</h2>
+            <div class="feature-grid">
+                <div class="feature-item" data-feature="reports">
+                    <div class="feature-icon">📊</div>
+                    <h3>Comprehensive Business Reports</h3>
+                    <p>View a variety of reports for inventory, accounting, sales, and all business operations.</p>
+                </div>
+                <div class="feature-item" data-feature="input">
+                    <div class="feature-icon">✏️</div>
+                    <h3>Direct Information Input</h3>
+                    <p>Add any information you require, such as item details or transaction history directly to reports.</p>
+                </div>
+                <div class="feature-item" data-feature="templates">
+                    <div class="feature-icon">👤</div>
+                    <h3>User-Specific Templates</h3>
+                    <p>Designate report templates for each user (ID) for personalized reporting experience.</p>
+                </div>
+                <div class="feature-item" data-feature="receivables">
+                    <div class="feature-icon">💳</div>
+                    <h3>Receivables Tracking</h3>
+                    <p>Display outstanding receivables on transaction statements for better cash flow management.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Why Businesses Choose Us</h2>
+            <div class="feature-grid">
+                <div class="feature-item" data-feature="rd">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Continuous R&D</h3>
+                    <p>Possesses most features required by businesses through continuous research and development.</p>
+                </div>
+                <div class="feature-item" data-feature="upgrades">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Proactive Upgrades</h3>
+                    <p>We respond to the ever-changing business environment through constant system upgrades.</p>
+                </div>
+                <div class="feature-item" data-feature="userdriven">
+                    <div class="feature-icon">💡</div>
+                    <h3>User-Driven Features</h3>
+                    <p>Users can suggest additional features they need - all upgrades provided free of charge!</p>
+                </div>
+                <div class="feature-item" data-feature="compliance">
+                    <div class="feature-icon">⚖️</div>
+                    <h3>Regulatory Compliance</h3>
+                    <p>We proactively reflect changes in tax laws and regulations for smooth business operations.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Complete Feature Set</h2>
+            <p style="text-align: center; margin-bottom: 20px; color: #666;">Click on any module to select it</p>
+            <div class="modules-showcase">
+                <div class="module-badge" data-module="web">🌐 Web-Based ERP</div>
+                <div class="module-badge" data-module="automation">🤖 Task Automation</div>
+                <div class="module-badge" data-module="users">👥 Unlimited Users</div>
+                <div class="module-badge" data-module="upgrades">🆓 Free Upgrades</div>
+                <div class="module-badge" data-module="reports">📋 Custom Reports</div>
+                <div class="module-badge" data-module="menu">🎯 Menu Optimization</div>
+                <div class="module-badge" data-module="board">📊 Configurable Board</div>
+                <div class="module-badge" data-module="mobile">📱 Mobile App</div>
+                <div class="module-badge" data-module="messenger">💬 Corporate Messenger</div>
+                <div class="module-badge" data-module="contract">📝 e-Contract</div>
+                <div class="module-badge" data-module="excel">📁 Excel Bulk Upload</div>
+                <div class="module-badge" data-module="security">🔒 Server Security</div>
+                <div class="module-badge" data-module="tracking">📍 Data Tracking</div>
+                <div class="module-badge" data-module="multilingual">🌏 Multilingual Support</div>
+                <div class="module-badge" data-module="inventory">📦 Inventory</div>
+                <div class="module-badge" data-module="production">🏭 Production</div>
+                <div class="module-badge" data-module="accounting">💼 Accounting</div>
+                <div class="module-badge" data-module="payroll">💰 Payroll</div>
+                <div class="module-badge" data-module="groupware">👔 Groupware</div>
+                <div class="module-badge" data-module="webmail">📧 Webmail</div>
+                <div class="module-badge" data-module="store">🛒 Online Store</div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to Transform Your Business?</h2>
+            <p>Join thousands of Filipino companies using our comprehensive ERP solution</p>
+            <button class="cta-button" id="getStartedBtn">Get Started Today</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>Business Management Solutions Philippines</strong></p>
+        <p>Empowering Filipino Businesses with World-Class ERP Technology</p>
+        <p>&copy; 2024 All Rights Reserved</p>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <script>
+        // Feature data
+        const featureData = {
+            inventory: {
+                title: "📦 Inventory Management",
+                content: `
+                    <p><strong>Comprehensive Inventory Control System</strong></p>
+                    <ul>
+                        <li>Real-time stock tracking and monitoring</li>
+                        <li>Multi-warehouse management</li>
+                        <li>Automatic reorder point alerts</li>
+                        <li>Barcode and QR code support</li>
+                        <li>Batch and serial number tracking</li>
+                        <li>Stock movement history</li>
+                        <li>Inventory valuation (FIFO, LIFO, Weighted Average)</li>
+                        <li>Stock adjustment and transfer management</li>
+                    </ul>
+                `
+            },
+            production: {
+                title: "🏭 Production Control",
+                content: `
+                    <p><strong>End-to-End Production Management</strong></p>
+                    <ul>
+                        <li>Bill of Materials (BOM) management</li>
+                        <li>Production planning and scheduling</li>
+                        <li>Work order management</li>
+                        <li>Shop floor control</li>
+                        <li>Quality control and inspection</li>
+                        <li>Material requirement planning (MRP)</li>
+                        <li>Production cost tracking</li>
+                        <li>Capacity planning</li>
+                    </ul>
+                `
+            },
+            accounting: {
+                title: "💼 Accounting System",
+                content: `
+                    <p><strong>Complete Financial Management</strong></p>
+                    <ul>
+                        <li>General ledger and chart of accounts</li>
+                        <li>Accounts payable and receivable</li>
+                        <li>Bank reconciliation</li>
+                        <li>Financial statements (Balance Sheet, P&L, Cash Flow)</li>
+                        <li>BIR-compliant reporting</li>
+                        <li>VAT and tax management</li>
+                        <li>Budget management and forecasting</li>
+                        <li>Multi-currency support</li>
+                    </ul>
+                `
+            },
+            payroll: {
+                title: "💰 Payroll Management",
+                content: `
+                    <p><strong>Automated Payroll Processing</strong></p>
+                    <ul>
+                        <li>Philippine tax computation (BIR-compliant)</li>
+                        <li>SSS, PhilHealth, Pag-IBIG contributions</li>
+                        <li>13th month pay calculation</li>
+                        <li>Leave management integration</li>
+                        <li>Overtime and holiday pay computation</li>
+                        <li>Loan and deduction management</li>
+                        <li>Payslip generation and distribution</li>
+                        <li>Government remittance forms (2316, alphalist)</li>
+                    </ul>
+                `
+            },
+            groupware: {
+                title: "📧 Groupware & Webmail",
+                content: `
+                    <p><strong>Integrated Communication Suite</strong></p>
+                    <ul>
+                        <li>Corporate email system</li>
+                        <li>Calendar and scheduling</li>
+                        <li>Task and project management</li>
+                        <li>Document sharing and collaboration</li>
+                        <li>Internal messaging</li>
+                        <li>Meeting room booking</li>
+                        <li>Company announcements</li>
+                        <li>Team collaboration tools</li>
+                    </ul>
+                `
+            },
+            workflow: {
+                title: "⚙️ Customizable Workflow",
+                content: `
+                    <p><strong>Tailor the System to Your Business</strong></p>
+                    <ul>
+                        <li>Configurable approval workflows</li>
+                        <li>Custom form builder</li>
+                        <li>Role-based access control</li>
+                        <li>Automated business rules</li>
+                        <li>Custom field creation</li>
+                        <li>Process automation</li>
+                        <li>Workflow visualization</li>
+                        <li>Department-specific configurations</li>
+                    </ul>
+                `
+            },
+            reports: {
+                title: "📊 Comprehensive Reports",
+                content: `
+                    <p><strong>Business Intelligence & Analytics</strong></p>
+                    <ul>
+                        <li>Pre-built report templates</li>
+                        <li>Custom report designer</li>
+                        <li>Real-time dashboards</li>
+                        <li>KPI monitoring</li>
+                        <li>Export to Excel, PDF, CSV</li>
+                        <li>Scheduled report generation</li>
+                        <li>Drill-down analysis</li>
+                        <li>Visual charts and graphs</li>
+                    </ul>
+                `
+            },
+            receivables: {
+                title: "💳 Receivables Tracking",
+                content: `
+                    <p><strong>Better Cash Flow Management</strong></p>
+                    <ul>
+                        <li>Aging reports by customer</li>
+                        <li>Payment reminder automation</li>
+                        <li>Credit limit monitoring</li>
+                        <li>Collection status tracking</li>
+                        <li>Statement of accounts generation</li>
+                        <li>Payment allocation</li>
+                        <li>Bad debt provision</li>
+                        <li>Customer payment history</li>
+                    </ul>
+                `
+            }
+        };
+
+        const industryData = {
+            manufacturing: {
+                title: "🏭 Manufacturing Industry",
+                content: `
+                    <p><strong>Specialized Features for Manufacturers</strong></p>
+                    <ul>
+                        <li>Production planning and control</li>
+                        <li>Shop floor management</li>
+                        <li>Quality assurance processes</li>
+                        <li>Equipment maintenance tracking</li>
+                        <li>Supplier and vendor management</li>
+                        <li>Cost of goods manufactured (COGM) reporting</li>
+                    </ul>
+                `
+            },
+            distribution: {
+                title: "📦 Distribution Industry",
+                content: `
+                    <p><strong>Optimize Your Distribution Network</strong></p>
+                    <ul>
+                        <li>Multi-warehouse management</li>
+                        <li>Route optimization</li>
+                        <li>Delivery scheduling</li>
+                        <li>Freight and logistics tracking</li>
+                        <li>Order fulfillment automation</li>
+                        <li>Returns and reverse logistics</li>
+                    </ul>
+                `
+            },
+            services: {
+                title: "🛎️ Service Industry",
+                content: `
+                    <p><strong>Manage Service-Based Operations</strong></p>
+                    <ul>
+                        <li>Service order management</li>
+                        <li>Customer relationship management (CRM)</li>
+                        <li>Time and billing tracking</li>
+                        <li>Service contract management</li>
+                        <li>Resource scheduling</li>
+                        <li>Customer feedback and satisfaction</li>
+                    </ul>
+                `
+            },
+            trade: {
+                title: "🌐 Trade Industry",
+                content: `
+                    <p><strong>Import/Export Trade Solutions</strong></p>
+                    <ul>
+                        <li>International shipping documentation</li>
+                        <li>Customs compliance management</li>
+                        <li>Multi-currency transactions</li>
+                        <li>Letter of credit processing</li>
+                        <li>Trade partner management</li>
+                        <li>Import duty calculations</li>
+                    </ul>
+                `
+            },
+            nonprofit: {
+                title: "🤝 Non-Profit Organizations",
+                content: `
+                    <p><strong>Tailored for NGOs and Foundations</strong></p>
+                    <ul>
+                        <li>Donor management system</li>
+                        <li>Grant and fund tracking</li>
+                        <li>Project-based accounting</li>
+                        <li>Volunteer management</li>
+                        <li>Donation receipt generation</li>
+                        <li>Impact reporting and analytics</li>
+                    </ul>
+                `
+            }
+        };
+
+        // Modal functions
+        const modal = document.getElementById('modal');
+        const modalBody = document.getElementById('modalBody');
+        const closeBtn = document.querySelector('.close-modal');
+        const notification = document.getElementById('notification');
+
+        function showModal(title, content) {
+            modalBody.innerHTML = `<h2>${title}</h2>${content}`;
+            modal.classList.add('show');
+        }
+
+        function hideModal() {
+            modal.classList.remove('show');
+        }
+
+        function showNotification(message, duration = 3000) {
+            notification.textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, duration);
+        }
+
+        // Close modal events
+        closeBtn.addEventListener('click', hideModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) hideModal();
+        });
+
+        // Feature item clicks
+        document.querySelectorAll('.feature-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const feature = this.dataset.feature;
+                if (featureData[feature]) {
+                    showModal(featureData[feature].title, featureData[feature].content);
+                    this.classList.toggle('active');
+                    showNotification(`✓ ${featureData[feature].title} details opened`);
+                }
+            });
+        });
+
+        // Industry clicks
+        document.querySelectorAll('.stat-box').forEach(box => {
+            box.addEventListener('click', function() {
+                const industry = this.dataset.industry;
+                if (industryData[industry]) {
+                    showModal(industryData[industry].title, industryData[industry].content);
+                    showNotification(`Viewing ${industryData[industry].title}`);
+                }
+            });
+        });
+
+        // Benefit card clicks
+        document.querySelectorAll('.benefit-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const benefit = this.dataset.benefit;
+                let title = '', content = '';
+                
+                switch(benefit) {
+                    case 'store':
+                        title = '🛒 Online Store Management';
+                        content = `
+                            <p><strong>E-Commerce Made Easy</strong></p>
+                            <ul>
+                                <li>Product catalog management</li>
+                                <li>Shopping cart integration</li>
+                                <li>Payment gateway support</li>
+                                <li>Order management system</li>
+                                <li>Customer account management</li>
+                                <li>Inventory sync with online store</li>
+                                <li>Shipping integration</li>
+                                <li>Sales analytics and reporting</li>
+                            </ul>
+                        `;
+                        break;
+                    case 'contract':
+                        title = '📝 e-Contract System';
+                        content = `
+                            <p><strong>Digital Contract Management</strong></p>
+                            <ul>
+                                <li>Electronic signature support</li>
+                                <li>Contract template library</li>
+                                <li>Version control and tracking</li>
+                                <li>Approval workflow automation</li>
+                                <li>Contract expiration alerts</li>
+                                <li>Secure document storage</li>
+                                <li>Audit trail and compliance</li>
+                                <li>Mobile signing capability</li>
+                            </ul>
+                        `;
+                        break;
+                    case 'allinone':
+                        title = '📱 All-in-One Platform';
+                        content = `
+                            <p><strong>Everything in One System</strong></p>
+                            <ul>
+                                <li>No need for multiple software subscriptions</li>
+                                <li>Seamless data integration</li>
+                                <li>Single sign-on access</li>
+                                <li>Unified user interface</li>
+                                <li>Centralized data management</li>
+                                <li>Lower IT maintenance costs</li>
+                                <li>Better data security</li>
+                                <li>Consistent user experience</li>
+                            </ul>
+                        `;
+                        break;
+                    case 'learn':
+                        title = '🎯 Interactive Learning';
+                        content = `
+                            <p><strong>Easy to Learn and Use</strong></p>
+                            <ul>
+                                <li>Built-in user guides</li>
+                                <li>Video tutorials</li>
+                                <li>Interactive tooltips</li>
+                                <li>Context-sensitive help</li>
+                                <li>Training materials included</li>
+                                <li>24/7 knowledge base access</li>
+                                <li>Regular webinars</li>
+                                <li>Dedicated support team</li>
+                            </ul>
+                        `;
+                        break;
+                }
+                showModal(title, content);
+                showNotification(`${title} information loaded`);
+            });
+        });
+
+        // Module badge selection
+        let selectedModules = [];
+        document.querySelectorAll('.module-badge').forEach(badge => {
+            badge.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                const module = this.textContent.trim();
+                
+                if (this.classList.contains('selected')) {
+                    selectedModules.push(module);
+                    showNotification(`✓ ${module} selected`);
+                } else {
+                    selectedModules = selectedModules.filter(m => m !== module);
+                    showNotification(`${module} deselected`);
+                }
+            });
+        });
+
+        // Get Started button
+        document.getElementById('getStartedBtn').addEventListener('click', function() {
+            const formHTML = `
+                <h2>Get Started with Our ERP Solution</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="companyName">Company Name *</label>
+                        <input type="text" id="companyName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="industry">Industry *</label>
+                        <select id="industry" required>
+                            <option value="">Select your industry</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="distribution">Distribution</option>
+                            <option value="services">Services</option>
+                            <option value="trade">Trade</option>
+                            <option value="nonprofit">Non-Profit</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="companySize">Company Size *</label>
+                        <select id="companySize" required>
+                            <option value="">Select company size</option>
+                            <option value="1-10">1-10 employees</option>
+                            <option value="11-50">11-50 employees</option>
+                            <option value="51-200">51-200 employees</option>
+                            <option value="201-500">201-500 employees</option>
+                            <option value="500+">500+ employees</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactName">Contact Person *</label>
+                        <input type="text" id="contactName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Additional Information</label>
+                        <textarea id="message" rows="4" placeholder="Tell us about your business needs..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Request</button>
+                </form>
+            `;
+            showModal('', formHTML);
+
+            // Handle form submission
+            setTimeout(() => {
+                document.getElementById('contactForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = {
+                        companyName: document.getElementById('companyName').value,
+                        industry: document.getElementById('industry').value,
+                        companySize: document.getElementById('companySize').value,
+                        contactName: document.getElementById('contactName').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        message: document.getElementById('message').value,
+                        selectedModules: selectedModules
+                    };
+
+                    console.log('Form submitted:', formData);
+                    hideModal();
+                    
+                    showNotification('✓ Thank you! We will contact you within 24 hours.', 5000);
+                    
+                    // Reset form
+                    this.reset();
+                    selectedModules = [];
+                    document.querySelectorAll('.module-badge.selected').forEach(b => b.classList.remove('selected'));
+                });
+            }, 100);
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add loading animation on page load
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Track scroll for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.6s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section, .benefits-section, .cta-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Console welcome message
+        console.log('%c🚀 Welcome to Business ERP Solution!', 'color: #0062cc; font-size: 20px; font-weight: bold;');
+        console.log('%cExplore all features by clicking on the cards!', 'color: #666; font-size: 14px;');
+    </script>
+</body>
+</html>
