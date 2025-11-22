@@ -18,41 +18,127 @@
             background: #f8f9fa;
         }
 
+        .menu-btn {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 300;
+            background: #0062cc;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,98,204,0.5);
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .menu-btn:active {
+            background: #004494;
+            transform: scale(0.95);
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 250;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            z-index: 260;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+            box-shadow: 5px 0 20px rgba(0,0,0,0.3);
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-header {
+            padding: 70px 20px 20px 20px;
+            background: #0062cc;
+            color: white;
+            text-align: center;
+        }
+
+        .sidebar-header h3 {
+            margin: 0;
+        }
+
+        .menu-items {
+            padding: 10px;
+        }
+
+        .menu-item {
+            padding: 15px 20px;
+            margin: 5px 0;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background: #f8f9fa;
+            color: #333;
+            font-weight: 600;
+            display: block;
+            text-decoration: none;
+        }
+
+        .menu-item:hover {
+            background: #0062cc;
+            color: white;
+            transform: translateX(5px);
+        }
+
         .hero {
             background: linear-gradient(135deg, #0062cc 0%, #004494 100%);
             color: white;
-            padding: 80px 20px;
+            padding: 80px 20px 60px 80px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".1" fill="%23ffffff"/></svg>') no-repeat bottom;
-            background-size: cover;
-            opacity: 0.1;
         }
 
         .hero h1 {
-            font-size: 3em;
+            font-size: 2.5em;
             margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
         }
 
         .hero p {
-            font-size: 1.3em;
+            font-size: 1.2em;
             opacity: 0.95;
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
         }
 
         .container {
@@ -63,273 +149,230 @@
 
         .section {
             background: white;
-            margin: 40px 0;
-            padding: 50px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 20px 0;
+            padding: 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            display: none;
+        }
+
+        .section.active {
+            display: block;
         }
 
         .section-title {
             color: #0062cc;
-            font-size: 2.2em;
-            margin-bottom: 30px;
+            font-size: 2em;
+            margin-bottom: 25px;
             text-align: center;
-            position: relative;
             padding-bottom: 15px;
+            border-bottom: 3px solid #0062cc;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #0062cc, #00d4ff);
-            border-radius: 2px;
-        }
-
-        .feature-grid {
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-
-        .feature-item {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 30px;
-            border-radius: 10px;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .feature-item:hover {
-            border-color: #0062cc;
-            transform: translateY(-8px);
-            box-shadow: 0 8px 25px rgba(0,98,204,0.15);
-        }
-
-        .feature-item.active {
-            border-color: #28a745;
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #0062cc 0%, #00d4ff 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 28px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,98,204,0.3);
-        }
-
-        .feature-item h3 {
-            color: #0062cc;
-            margin-bottom: 12px;
-            font-size: 1.3em;
-        }
-
-        .feature-item p {
-            color: #555;
-            font-size: 0.95em;
-        }
-
-        .benefits-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 50px;
-            border-radius: 12px;
-            margin: 40px 0;
-        }
-
-        .benefits-section h2 {
-            color: white;
-            text-align: center;
-            font-size: 2.2em;
-            margin-bottom: 40px;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .benefit-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 25px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .benefit-card:hover {
-            background: rgba(255,255,255,0.2);
-            transform: scale(1.05);
-        }
-
-        .benefit-card h3 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .modules-showcase {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
-            margin-top: 40px;
+            margin: 25px 0;
         }
 
-        .module-badge {
-            background: white;
-            border: 2px solid #0062cc;
-            color: #0062cc;
-            padding: 15px 20px;
-            border-radius: 30px;
+        .stat-card {
+            background: linear-gradient(135deg, #0062cc 0%, #004494 100%);
+            color: white;
+            padding: 25px 15px;
+            border-radius: 12px;
             text-align: center;
-            font-weight: 600;
-            font-size: 0.9em;
-            transition: all 0.3s;
-            cursor: pointer;
+            box-shadow: 0 3px 15px rgba(0,98,204,0.3);
         }
 
-        .module-badge:hover {
+        .stat-card h4 {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .stat-card .value {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 160px;
+        }
+
+        .btn-primary {
             background: #0062cc;
             color: white;
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,98,204,0.3);
         }
 
-        .module-badge.selected {
+        .btn-primary:hover {
+            background: #004494;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
             background: #28a745;
-            border-color: #28a745;
             color: white;
         }
 
-        .cta-section {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-danger {
+            background: #dc3545;
             color: white;
-            padding: 60px 40px;
-            border-radius: 12px;
-            text-align: center;
-            margin: 40px 0;
+            padding: 8px 16px;
+            font-size: 0.85em;
         }
 
-        .cta-section h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
+        .btn-danger:hover {
+            background: #c82333;
         }
 
-        .cta-section p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-            opacity: 0.95;
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .cta-button {
-            display: inline-block;
+        .data-table th {
+            background: #0062cc;
+            color: white;
+            padding: 15px 10px;
+            text-align: left;
+            font-size: 0.9em;
+        }
+
+        .data-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 0.85em;
+        }
+
+        .data-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .function-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .function-card {
             background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s;
+        }
+
+        .function-card:hover {
+            border-color: #0062cc;
+            box-shadow: 0 5px 20px rgba(0,98,204,0.15);
+            transform: translateY(-5px);
+        }
+
+        .function-card h3 {
+            color: #0062cc;
+            margin-bottom: 15px;
+        }
+
+        .function-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .function-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .function-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
             color: #28a745;
-            padding: 18px 50px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            background: #e9ecef;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
             font-weight: 600;
             transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            cursor: pointer;
-            border: none;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-        }
-
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .stat-box {
-            text-align: center;
-            padding: 30px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .stat-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(0,98,204,0.2);
-        }
-
-        .stat-number {
-            font-size: 3em;
-            display: block;
-        }
-
-        .stat-label {
-            color: #666;
-            font-size: 1.1em;
-            margin-top: 10px;
-        }
-
-        .footer {
-            background: #1a1a1a;
+        .tab.active {
+            background: #0062cc;
             color: white;
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
         }
 
-        .footer p {
-            margin: 10px 0;
-            opacity: 0.8;
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.7);
-            animation: fadeIn 0.3s;
-        }
-
-        .modal.show {
-            display: flex;
+            z-index: 400;
             align-items: center;
             justify-content: center;
         }
 
+        .modal.show {
+            display: flex;
+        }
+
         .modal-content {
             background: white;
-            padding: 40px;
+            padding: 30px;
             border-radius: 15px;
             max-width: 600px;
             width: 90%;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
             position: relative;
-            animation: slideIn 0.3s;
         }
 
         .close-modal {
@@ -340,64 +383,12 @@
             font-weight: bold;
             color: #999;
             cursor: pointer;
-            transition: color 0.3s;
+            background: none;
+            border: none;
         }
 
         .close-modal:hover {
             color: #333;
-        }
-
-        .modal h2 {
-            color: #0062cc;
-            margin-bottom: 20px;
-            font-size: 2em;
-        }
-
-        .modal p {
-            margin: 15px 0;
-            line-height: 1.8;
-        }
-
-        .modal ul {
-            margin: 15px 0;
-            padding-left: 25px;
-        }
-
-        .modal li {
-            margin: 10px 0;
-        }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #28a745;
-            color: white;
-            padding: 20px 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            z-index: 2000;
-            display: none;
-            animation: slideInRight 0.3s;
-        }
-
-        .notification.show {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes slideInRight {
-            from { transform: translateX(100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
         }
 
         .form-group {
@@ -419,7 +410,6 @@
             border: 2px solid #ddd;
             border-radius: 8px;
             font-size: 1em;
-            transition: border-color 0.3s;
         }
 
         .form-group input:focus,
@@ -429,727 +419,1346 @@
             border-color: #0062cc;
         }
 
-        .submit-btn {
-            background: #0062cc;
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
             color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 500;
+            display: none;
         }
 
-        .submit-btn:hover {
-            background: #004494;
-            transform: translateY(-2px);
+        .notification.show {
+            display: block;
+        }
+
+        .notification.error {
+            background: #dc3545;
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer p {
+            margin: 10px 0;
+            opacity: 0.8;
+        }
+
+        .report-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .report-section h3 {
+            color: #0062cc;
+            margin-bottom: 15px;
+        }
+
+        .report-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .report-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .status-low {
+            background: #dc3545;
+            color: white;
+        }
+
+        .status-ok {
+            background: #28a745;
+            color: white;
+        }
+
+        .status-pending {
+            background: #ffc107;
+            color: #333;
         }
 
         @media (max-width: 768px) {
+            .hero {
+                padding: 70px 20px 40px 70px;
+            }
+
             .hero h1 {
-                font-size: 2em;
-            }
-
-            .hero p {
-                font-size: 1.1em;
-            }
-
-            .section {
-                padding: 30px 20px;
-            }
-
-            .section-title {
                 font-size: 1.8em;
             }
 
-            .feature-grid {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .function-grid {
                 grid-template-columns: 1fr;
             }
 
-            .modal-content {
-                padding: 30px 20px;
+            .data-table {
+                font-size: 0.8em;
             }
         }
     </style>
 </head>
 <body>
+    <button class="menu-btn" onclick="toggleMenu()">
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </button>
+
+    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>📋 Main Menu</h3>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item" onclick="goToSection('inventory')">📦 Inventory & Products</div>
+            <div class="menu-item" onclick="goToSection('accounting')">💼 Money & Accounting</div>
+            <div class="menu-item" onclick="goToSection('payroll')">💰 Employees & Payroll</div>
+            <div class="menu-item" onclick="goToSection('sales')">🛒 Sales & Customers</div>
+            <div class="menu-item" onclick="goToSection('production')">🏭 Production</div>
+            <div class="menu-item" onclick="goToSection('store')">🛍 Online Store</div>
+            <div class="menu-item" onclick="goToSection('documents')">📄 Documents</div>
+            <div class="menu-item" onclick="goToSection('reports')">📊 Reports</div>
+        </div>
+    </div>
+
     <div class="hero">
-        <h1>🚀 Complete Business Management Solution</h1>
-        <p>Powerful ERP System Designed for Filipino Businesses of All Sizes and Industries</p>
+        <h1>🚀 Complete Business Management</h1>
+        <p>ERP System for Filipino Businesses</p>
     </div>
 
     <div class="container">
-        <div class="section">
-            <h2 class="section-title">All the Features Your Company Needs</h2>
-            <div class="feature-grid">
-                <div class="feature-item" data-feature="inventory">
-                    <div class="feature-icon">📦</div>
-                    <h3>Inventory Management</h3>
-                    <p>Complete control over your stock levels, warehouse management, and supply chain operations.</p>
+        <!-- Inventory Section -->
+        <div id="inventory" class="section active">
+            <h2 class="section-title">📦 Inventory & Products Management</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>Total Products</h4>
+                    <div class="value" id="totalProducts">0</div>
                 </div>
-                <div class="feature-item" data-feature="production">
-                    <div class="feature-icon">🏭</div>
-                    <h3>Production Control</h3>
-                    <p>Streamline manufacturing processes and optimize production workflows for maximum efficiency.</p>
+                <div class="stat-card">
+                    <h4>Low Stock Items</h4>
+                    <div class="value" id="lowStock">0</div>
                 </div>
-                <div class="feature-item" data-feature="accounting">
-                    <div class="feature-icon">💼</div>
-                    <h3>Accounting System</h3>
-                    <p>Full-featured accounting compliant with Philippine tax laws and regulations.</p>
+                <div class="stat-card">
+                    <h4>Total Value</h4>
+                    <div class="value">₱<span id="totalValue">0</span></div>
                 </div>
-                <div class="feature-item" data-feature="payroll">
-                    <div class="feature-icon">💰</div>
-                    <h3>Payroll Management</h3>
-                    <p>Automated payroll processing with Philippine tax computation and compliance.</p>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="showAddProduct()">➕ Add New Product</button>
+                <button class="btn btn-success" onclick="checkStock()">🔍 Check Low Stock</button>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Stock</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="productTable"></tbody>
+            </table>
+        </div>
+
+        <!-- Accounting Section -->
+        <div id="accounting" class="section">
+            <h2 class="section-title">💼 Money & Accounting</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>Total Income</h4>
+                    <div class="value" style="color: #4ade80;">₱<span id="totalIncome">0</span></div>
                 </div>
-                <div class="feature-item" data-feature="groupware">
-                    <div class="feature-icon">📧</div>
-                    <h3>Groupware & Webmail</h3>
-                    <p>Integrated communication tools to keep your team connected and productive.</p>
+                <div class="stat-card">
+                    <h4>Total Expenses</h4>
+                    <div class="value" style="color: #f87171;">₱<span id="totalExpenses">0</span></div>
                 </div>
-                <div class="feature-item" data-feature="workflow">
-                    <div class="feature-icon">⚙️</div>
-                    <h3>Customizable Workflow</h3>
-                    <p>Configure the program environment to match your company's unique business processes.</p>
+                <div class="stat-card">
+                    <h4>Net Profit</h4>
+                    <div class="value">₱<span id="netProfit">0</span></div>
                 </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="showAddTransaction()">➕ Add Transaction</button>
+                <button class="btn btn-success" onclick="generateFinancialReport()">📊 Generate Report</button>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" onclick="switchAccountingTab(event, 'income')">Income</button>
+                <button class="tab" onclick="switchAccountingTab(event, 'expenses')">Expenses</button>
+            </div>
+
+            <div id="income" class="tab-content active">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="incomeTable"></tbody>
+                </table>
+            </div>
+
+            <div id="expenses" class="tab-content">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expensesTable"></tbody>
+                </table>
             </div>
         </div>
 
-        <div class="section">
-            <h2 class="section-title">Suitable for All Industries</h2>
-            <div class="stats-row">
-                <div class="stat-box" data-industry="manufacturing">
-                    <span class="stat-number">🏭</span>
-                    <span class="stat-label">Manufacturing</span>
+        <!-- Payroll Section -->
+        <div id="payroll" class="section">
+            <h2 class="section-title">💰 Employees & Payroll</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>Total Employees</h4>
+                    <div class="value" id="totalEmployees">0</div>
                 </div>
-                <div class="stat-box" data-industry="distribution">
-                    <span class="stat-number">📦</span>
-                    <span class="stat-label">Distribution</span>
-                </div>
-                <div class="stat-box" data-industry="services">
-                    <span class="stat-number">🛎️</span>
-                    <span class="stat-label">Services</span>
-                </div>
-                <div class="stat-box" data-industry="trade">
-                    <span class="stat-number">🌐</span>
-                    <span class="stat-label">Trade</span>
-                </div>
-                <div class="stat-box" data-industry="nonprofit">
-                    <span class="stat-number">🤝</span>
-                    <span class="stat-label">Non-Profit</span>
+                <div class="stat-card">
+                    <h4>Monthly Payroll</h4>
+                    <div class="value">₱<span id="monthlyPayroll">0</span></div>
                 </div>
             </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="showAddEmployee()">➕ Add Employee</button>
+                <button class="btn btn-success" onclick="calculatePayroll()">💰 Calculate Payroll</button>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Basic Salary</th>
+                        <th>Deductions</th>
+                        <th>Net Salary</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeTable"></tbody>
+            </table>
         </div>
 
-        <div class="benefits-section">
-            <h2>Additional Convenient Features Included</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card" data-benefit="store">
-                    <h3>🛒 Online Store Management</h3>
-                    <p>Manage your e-commerce operations seamlessly - absolutely free of charge!</p>
+        <!-- Sales Section -->
+        <div id="sales" class="section">
+            <h2 class="section-title">🛒 Sales & Customers</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>Total Customers</h4>
+                    <div class="value" id="totalCustomers">0</div>
                 </div>
-                <div class="benefit-card" data-benefit="contract">
-                    <h3>📝 e-Contract System</h3>
-                    <p>Digital contract management and electronic signatures included at no extra cost.</p>
+                <div class="stat-card">
+                    <h4>Today's Sales</h4>
+                    <div class="value">₱<span id="todaySales">0</span></div>
                 </div>
-                <div class="benefit-card" data-benefit="allinone">
-                    <h3>📱 All-in-One Platform</h3>
-                    <p>Manage everything without the need for additional programs or subscriptions.</p>
-                </div>
-                <div class="benefit-card" data-benefit="learn">
-                    <h3>🎯 Click & Learn</h3>
-                    <p>Click on feature icons to learn more about each functionality in detail.</p>
+                <div class="stat-card">
+                    <h4>Total Sales</h4>
+                    <div class="value">₱<span id="totalSales">0</span></div>
                 </div>
             </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="showAddCustomer()">➕ Add Customer</button>
+                <button class="btn btn-success" onclick="showCreateInvoice()">📄 Create Invoice</button>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Email</th>
+                        <th>Total Purchases</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="customerTable"></tbody>
+            </table>
         </div>
 
-        <div class="section">
-            <h2 class="section-title">Reports Customized with the Information You Need</h2>
-            <div class="feature-grid">
-                <div class="feature-item" data-feature="reports">
-                    <div class="feature-icon">📊</div>
-                    <h3>Comprehensive Business Reports</h3>
-                    <p>View a variety of reports for inventory, accounting, sales, and all business operations.</p>
+        <!-- Production Section -->
+        <div id="production" class="section">
+            <h2 class="section-title">🏭 Production & Manufacturing</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>Active Orders</h4>
+                    <div class="value" id="activeOrders">0</div>
                 </div>
-                <div class="feature-item" data-feature="input">
-                    <div class="feature-icon">✏️</div>
-                    <h3>Direct Information Input</h3>
-                    <p>Add any information you require, such as item details or transaction history directly to reports.</p>
-                </div>
-                <div class="feature-item" data-feature="templates">
-                    <div class="feature-icon">👤</div>
-                    <h3>User-Specific Templates</h3>
-                    <p>Designate report templates for each user (ID) for personalized reporting experience.</p>
-                </div>
-                <div class="feature-item" data-feature="receivables">
-                    <div class="feature-icon">💳</div>
-                    <h3>Receivables Tracking</h3>
-                    <p>Display outstanding receivables on transaction statements for better cash flow management.</p>
+                <div class="stat-card">
+                    <h4>Completed</h4>
+                    <div class="value" id="completedOrders">0</div>
                 </div>
             </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="showCreateWorkOrder()">➕ Create Work Order</button>
+                <button class="btn btn-success" onclick="showCreateBOM()">📋 Create BOM</button>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                        <th>Start Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="workOrderTable"></tbody>
+            </table>
         </div>
 
-        <div class="section">
-            <h2 class="section-title">Why Businesses Choose Us</h2>
-            <div class="feature-grid">
-                <div class="feature-item" data-feature="rd">
-                    <div class="feature-icon">🔬</div>
-                    <h3>Continuous R&D</h3>
-                    <p>Possesses most features required by businesses through continuous research and development.</p>
+        <!-- Online Store Section -->
+        <div id="store" class="section">
+            <h2 class="section-title">🛍 Online Store Management</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>Published Products</h4>
+                    <div class="value" id="publishedProducts">0</div>
                 </div>
-                <div class="feature-item" data-feature="upgrades">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Proactive Upgrades</h3>
-                    <p>We respond to the ever-changing business environment through constant system upgrades.</p>
+                <div class="stat-card">
+                    <h4>Online Orders</h4>
+                    <div class="value" id="onlineOrders">0</div>
                 </div>
-                <div class="feature-item" data-feature="userdriven">
-                    <div class="feature-icon">💡</div>
-                    <h3>User-Driven Features</h3>
-                    <p>Users can suggest additional features they need - all upgrades provided free of charge!</p>
-                </div>
-                <div class="feature-item" data-feature="compliance">
-                    <div class="feature-icon">⚖️</div>
-                    <h3>Regulatory Compliance</h3>
-                    <p>We proactively reflect changes in tax laws and regulations for smooth business operations.</p>
+                <div class="stat-card">
+                    <h4>Pending Delivery</h4>
+                    <div class="value" id="pendingDelivery">0</div>
                 </div>
             </div>
-        </div>
 
-        <div class="section">
-            <h2 class="section-title">Complete Feature Set</h2>
-            <p style="text-align: center; margin-bottom: 20px; color: #666;">Click on any module to select it</p>
-            <div class="modules-showcase">
-                <div class="module-badge" data-module="web">🌐 Web-Based ERP</div>
-                <div class="module-badge" data-module="automation">🤖 Task Automation</div>
-                <div class="module-badge" data-module="users">👥 Unlimited Users</div>
-                <div class="module-badge" data-module="upgrades">🆓 Free Upgrades</div>
-                <div class="module-badge" data-module="reports">📋 Custom Reports</div>
-                <div class="module-badge" data-module="menu">🎯 Menu Optimization</div>
-                <div class="module-badge" data-module="board">📊 Configurable Board</div>
-                <div class="module-badge" data-module="mobile">📱 Mobile App</div>
-                <div class="module-badge" data-module="messenger">💬 Corporate Messenger</div>
-                <div class="module-badge" data-module="contract">📝 e-Contract</div>
-                <div class="module-badge" data-module="excel">📁 Excel Bulk Upload</div>
-                <div class="module-badge" data-module="security">🔒 Server Security</div>
-                <div class="module-badge" data-module="tracking">📍 Data Tracking</div>
-                <div class="module-badge" data-module="multilingual">🌏 Multilingual Support</div>
-                <div class="module-badge" data-module="inventory">📦 Inventory</div>
-                <div class="module-badge" data-module="production">🏭 Production</div>
-                <div class="module-badge" data-module="accounting">💼 Accounting</div>
-                <div class="module-badge" data-module="payroll">💰 Payroll</div>
-                <div class="module-badge" data-module="groupware">👔 Groupware</div>
-                <div class="module-badge" data-module="webmail">📧 Webmail</div>
-                <div class="module-badge" data-module="store">🛒 Online Store</div>
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="showPublishProduct()">🌐 Publish Product</button>
+                <button class="btn btn-success" onclick="viewOnlineOrders()">📦 View Orders</button>
             </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Amount</th>
+                        <th>Payment</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="storeOrderTable"></tbody>
+            </table>
         </div>
 
-        <div class="cta-section">
-            <h2>Ready to Transform Your Business?</h2>
-            <p>Join thousands of Filipino companies using our comprehensive ERP solution</p>
-            <button class="cta-button" id="getStartedBtn">Get Started Today</button>
+        <!-- Documents Section -->
+        <div id="documents" class="section">
+            <h2 class="section-title">📄 Documents & Contracts</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>Total Documents</h4>
+                    <div class="value" id="totalDocuments">0</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Pending Signatures</h4>
+                    <div class="value" id="pendingSignatures">0</div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="showUploadDocument()">📤 Upload Document</button>
+                <button class="btn btn-success" onclick="showSignDocument()">✍️ E-Sign Document</button>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Document Name</th>
+                        <th>Category</th>
+                        <th>Upload Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="documentTable"></tbody>
+            </table>
+        </div>
+
+        <!-- Reports Section -->
+        <div id="reports" class="section">
+            <h2 class="section-title">📊 Reports & Analytics</h2>
+            
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="generateSalesReport()">📈 Sales Report</button>
+                <button class="btn btn-primary" onclick="generateInventoryReport()">📦 Inventory Report</button>
+                <button class="btn btn-success" onclick="exportAllReports()">📥 Export All</button>
+            </div>
+
+            <div id="reportsDisplay"></div>
         </div>
     </div>
 
-    <div class="footer">
-        <p><strong>Business Management Solutions Philippines</strong></p>
-        <p>Empowering Filipino Businesses with World-Class ERP Technology</p>
-        <p>&copy; 2024 All Rights Reserved</p>
-    </div>
-
-    <!-- Modal -->
     <div id="modal" class="modal">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <button class="close-modal" onclick="hideModal()">×</button>
             <div id="modalBody"></div>
         </div>
     </div>
 
-    <!-- Notification -->
     <div id="notification" class="notification"></div>
 
+    <div class="footer">
+        <p><strong>Business Management Solutions Philippines</strong></p>
+        <p>&copy; 2024 All Rights Reserved</p>
+    </div>
+
     <script>
-        // Feature data
-        const featureData = {
-            inventory: {
-                title: "📦 Inventory Management",
-                content: `
-                    <p><strong>Comprehensive Inventory Control System</strong></p>
-                    <ul>
-                        <li>Real-time stock tracking and monitoring</li>
-                        <li>Multi-warehouse management</li>
-                        <li>Automatic reorder point alerts</li>
-                        <li>Barcode and QR code support</li>
-                        <li>Batch and serial number tracking</li>
-                        <li>Stock movement history</li>
-                        <li>Inventory valuation (FIFO, LIFO, Weighted Average)</li>
-                        <li>Stock adjustment and transfer management</li>
-                    </ul>
-                `
-            },
-            production: {
-                title: "🏭 Production Control",
-                content: `
-                    <p><strong>End-to-End Production Management</strong></p>
-                    <ul>
-                        <li>Bill of Materials (BOM) management</li>
-                        <li>Production planning and scheduling</li>
-                        <li>Work order management</li>
-                        <li>Shop floor control</li>
-                        <li>Quality control and inspection</li>
-                        <li>Material requirement planning (MRP)</li>
-                        <li>Production cost tracking</li>
-                        <li>Capacity planning</li>
-                    </ul>
-                `
-            },
-            accounting: {
-                title: "💼 Accounting System",
-                content: `
-                    <p><strong>Complete Financial Management</strong></p>
-                    <ul>
-                        <li>General ledger and chart of accounts</li>
-                        <li>Accounts payable and receivable</li>
-                        <li>Bank reconciliation</li>
-                        <li>Financial statements (Balance Sheet, P&L, Cash Flow)</li>
-                        <li>BIR-compliant reporting</li>
-                        <li>VAT and tax management</li>
-                        <li>Budget management and forecasting</li>
-                        <li>Multi-currency support</li>
-                    </ul>
-                `
-            },
-            payroll: {
-                title: "💰 Payroll Management",
-                content: `
-                    <p><strong>Automated Payroll Processing</strong></p>
-                    <ul>
-                        <li>Philippine tax computation (BIR-compliant)</li>
-                        <li>SSS, PhilHealth, Pag-IBIG contributions</li>
-                        <li>13th month pay calculation</li>
-                        <li>Leave management integration</li>
-                        <li>Overtime and holiday pay computation</li>
-                        <li>Loan and deduction management</li>
-                        <li>Payslip generation and distribution</li>
-                        <li>Government remittance forms (2316, alphalist)</li>
-                    </ul>
-                `
-            },
-            groupware: {
-                title: "📧 Groupware & Webmail",
-                content: `
-                    <p><strong>Integrated Communication Suite</strong></p>
-                    <ul>
-                        <li>Corporate email system</li>
-                        <li>Calendar and scheduling</li>
-                        <li>Task and project management</li>
-                        <li>Document sharing and collaboration</li>
-                        <li>Internal messaging</li>
-                        <li>Meeting room booking</li>
-                        <li>Company announcements</li>
-                        <li>Team collaboration tools</li>
-                    </ul>
-                `
-            },
-            workflow: {
-                title: "⚙️ Customizable Workflow",
-                content: `
-                    <p><strong>Tailor the System to Your Business</strong></p>
-                    <ul>
-                        <li>Configurable approval workflows</li>
-                        <li>Custom form builder</li>
-                        <li>Role-based access control</li>
-                        <li>Automated business rules</li>
-                        <li>Custom field creation</li>
-                        <li>Process automation</li>
-                        <li>Workflow visualization</li>
-                        <li>Department-specific configurations</li>
-                    </ul>
-                `
-            },
-            reports: {
-                title: "📊 Comprehensive Reports",
-                content: `
-                    <p><strong>Business Intelligence & Analytics</strong></p>
-                    <ul>
-                        <li>Pre-built report templates</li>
-                        <li>Custom report designer</li>
-                        <li>Real-time dashboards</li>
-                        <li>KPI monitoring</li>
-                        <li>Export to Excel, PDF, CSV</li>
-                        <li>Scheduled report generation</li>
-                        <li>Drill-down analysis</li>
-                        <li>Visual charts and graphs</li>
-                    </ul>
-                `
-            },
-            receivables: {
-                title: "💳 Receivables Tracking",
-                content: `
-                    <p><strong>Better Cash Flow Management</strong></p>
-                    <ul>
-                        <li>Aging reports by customer</li>
-                        <li>Payment reminder automation</li>
-                        <li>Credit limit monitoring</li>
-                        <li>Collection status tracking</li>
-                        <li>Statement of accounts generation</li>
-                        <li>Payment allocation</li>
-                        <li>Bad debt provision</li>
-                        <li>Customer payment history</li>
-                    </ul>
-                `
-            }
-        };
+        // Load data from localStorage or initialize empty arrays
+        let products = JSON.parse(localStorage.getItem('products')) || [];
+        let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+        let employees = JSON.parse(localStorage.getItem('employees')) || [];
+        let customers = JSON.parse(localStorage.getItem('customers')) || [];
+        let workOrders = JSON.parse(localStorage.getItem('workOrders')) || [];
+        let storeOrders = JSON.parse(localStorage.getItem('storeOrders')) || [];
+        let documents = JSON.parse(localStorage.getItem('documents')) || [];
+        let invoices = JSON.parse(localStorage.getItem('invoices')) || [];
 
-        const industryData = {
-            manufacturing: {
-                title: "🏭 Manufacturing Industry",
-                content: `
-                    <p><strong>Specialized Features for Manufacturers</strong></p>
-                    <ul>
-                        <li>Production planning and control</li>
-                        <li>Shop floor management</li>
-                        <li>Quality assurance processes</li>
-                        <li>Equipment maintenance tracking</li>
-                        <li>Supplier and vendor management</li>
-                        <li>Cost of goods manufactured (COGM) reporting</li>
-                    </ul>
-                `
-            },
-            distribution: {
-                title: "📦 Distribution Industry",
-                content: `
-                    <p><strong>Optimize Your Distribution Network</strong></p>
-                    <ul>
-                        <li>Multi-warehouse management</li>
-                        <li>Route optimization</li>
-                        <li>Delivery scheduling</li>
-                        <li>Freight and logistics tracking</li>
-                        <li>Order fulfillment automation</li>
-                        <li>Returns and reverse logistics</li>
-                    </ul>
-                `
-            },
-            services: {
-                title: "🛎️ Service Industry",
-                content: `
-                    <p><strong>Manage Service-Based Operations</strong></p>
-                    <ul>
-                        <li>Service order management</li>
-                        <li>Customer relationship management (CRM)</li>
-                        <li>Time and billing tracking</li>
-                        <li>Service contract management</li>
-                        <li>Resource scheduling</li>
-                        <li>Customer feedback and satisfaction</li>
-                    </ul>
-                `
-            },
-            trade: {
-                title: "🌐 Trade Industry",
-                content: `
-                    <p><strong>Import/Export Trade Solutions</strong></p>
-                    <ul>
-                        <li>International shipping documentation</li>
-                        <li>Customs compliance management</li>
-                        <li>Multi-currency transactions</li>
-                        <li>Letter of credit processing</li>
-                        <li>Trade partner management</li>
-                        <li>Import duty calculations</li>
-                    </ul>
-                `
-            },
-            nonprofit: {
-                title: "🤝 Non-Profit Organizations",
-                content: `
-                    <p><strong>Tailored for NGOs and Foundations</strong></p>
-                    <ul>
-                        <li>Donor management system</li>
-                        <li>Grant and fund tracking</li>
-                        <li>Project-based accounting</li>
-                        <li>Volunteer management</li>
-                        <li>Donation receipt generation</li>
-                        <li>Impact reporting and analytics</li>
-                    </ul>
-                `
-            }
-        };
+        // Save data to localStorage
+        function saveData() {
+            localStorage.setItem('products', JSON.stringify(products));
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+            localStorage.setItem('employees', JSON.stringify(employees));
+            localStorage.setItem('customers', JSON.stringify(customers));
+            localStorage.setItem('workOrders', JSON.stringify(workOrders));
+            localStorage.setItem('storeOrders', JSON.stringify(storeOrders));
+            localStorage.setItem('documents', JSON.stringify(documents));
+            localStorage.setItem('invoices', JSON.stringify(invoices));
+        }
 
-        // Modal functions
-        const modal = document.getElementById('modal');
-        const modalBody = document.getElementById('modalBody');
-        const closeBtn = document.querySelector('.close-modal');
-        const notification = document.getElementById('notification');
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
+        function closeMenu() {
+            document.getElementById('sidebar').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        function goToSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            closeMenu();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
         function showModal(title, content) {
-            modalBody.innerHTML = `<h2>${title}</h2>${content}`;
-            modal.classList.add('show');
+            document.getElementById('modalBody').innerHTML = `<h2>${title}</h2>${content}`;
+            document.getElementById('modal').classList.add('show');
         }
 
         function hideModal() {
-            modal.classList.remove('show');
+            document.getElementById('modal').classList.remove('show');
         }
 
-        function showNotification(message, duration = 3000) {
-            notification.textContent = message;
-            notification.classList.add('show');
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, duration);
+        function showNotification(message, type = 'success') {
+            const notif = document.getElementById('notification');
+            notif.textContent = message;
+            notif.className = 'notification show' + (type === 'error' ? ' error' : '');
+            setTimeout(() => notif.classList.remove('show'), 3000);
         }
 
-        // Close modal events
-        closeBtn.addEventListener('click', hideModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) hideModal();
-        });
-
-        // Feature item clicks
-        document.querySelectorAll('.feature-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const feature = this.dataset.feature;
-                if (featureData[feature]) {
-                    showModal(featureData[feature].title, featureData[feature].content);
-                    this.classList.toggle('active');
-                    showNotification(`✓ ${featureData[feature].title} details opened`);
-                }
-            });
-        });
-
-        // Industry clicks
-        document.querySelectorAll('.stat-box').forEach(box => {
-            box.addEventListener('click', function() {
-                const industry = this.dataset.industry;
-                if (industryData[industry]) {
-                    showModal(industryData[industry].title, industryData[industry].content);
-                    showNotification(`Viewing ${industryData[industry].title}`);
-                }
-            });
-        });
-
-        // Benefit card clicks
-        document.querySelectorAll('.benefit-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const benefit = this.dataset.benefit;
-                let title = '', content = '';
-                
-                switch(benefit) {
-                    case 'store':
-                        title = '🛒 Online Store Management';
-                        content = `
-                            <p><strong>E-Commerce Made Easy</strong></p>
-                            <ul>
-                                <li>Product catalog management</li>
-                                <li>Shopping cart integration</li>
-                                <li>Payment gateway support</li>
-                                <li>Order management system</li>
-                                <li>Customer account management</li>
-                                <li>Inventory sync with online store</li>
-                                <li>Shipping integration</li>
-                                <li>Sales analytics and reporting</li>
-                            </ul>
-                        `;
-                        break;
-                    case 'contract':
-                        title = '📝 e-Contract System';
-                        content = `
-                            <p><strong>Digital Contract Management</strong></p>
-                            <ul>
-                                <li>Electronic signature support</li>
-                                <li>Contract template library</li>
-                                <li>Version control and tracking</li>
-                                <li>Approval workflow automation</li>
-                                <li>Contract expiration alerts</li>
-                                <li>Secure document storage</li>
-                                <li>Audit trail and compliance</li>
-                                <li>Mobile signing capability</li>
-                            </ul>
-                        `;
-                        break;
-                    case 'allinone':
-                        title = '📱 All-in-One Platform';
-                        content = `
-                            <p><strong>Everything in One System</strong></p>
-                            <ul>
-                                <li>No need for multiple software subscriptions</li>
-                                <li>Seamless data integration</li>
-                                <li>Single sign-on access</li>
-                                <li>Unified user interface</li>
-                                <li>Centralized data management</li>
-                                <li>Lower IT maintenance costs</li>
-                                <li>Better data security</li>
-                                <li>Consistent user experience</li>
-                            </ul>
-                        `;
-                        break;
-                    case 'learn':
-                        title = '🎯 Interactive Learning';
-                        content = `
-                            <p><strong>Easy to Learn and Use</strong></p>
-                            <ul>
-                                <li>Built-in user guides</li>
-                                <li>Video tutorials</li>
-                                <li>Interactive tooltips</li>
-                                <li>Context-sensitive help</li>
-                                <li>Training materials included</li>
-                                <li>24/7 knowledge base access</li>
-                                <li>Regular webinars</li>
-                                <li>Dedicated support team</li>
-                            </ul>
-                        `;
-                        break;
-                }
-                showModal(title, content);
-                showNotification(`${title} information loaded`);
-            });
-        });
-
-        // Module badge selection
-        let selectedModules = [];
-        document.querySelectorAll('.module-badge').forEach(badge => {
-            badge.addEventListener('click', function() {
-                this.classList.toggle('selected');
-                const module = this.textContent.trim();
-                
-                if (this.classList.contains('selected')) {
-                    selectedModules.push(module);
-                    showNotification(`✓ ${module} selected`);
-                } else {
-                    selectedModules = selectedModules.filter(m => m !== module);
-                    showNotification(`${module} deselected`);
-                }
-            });
-        });
-
-        // Get Started button
-        document.getElementById('getStartedBtn').addEventListener('click', function() {
-            const formHTML = `
-                <h2>Get Started with Our ERP Solution</h2>
-                <form id="contactForm">
+        // INVENTORY FUNCTIONS
+        function showAddProduct() {
+            const form = `
+                <form onsubmit="addProduct(event)">
                     <div class="form-group">
-                        <label for="companyName">Company Name *</label>
-                        <input type="text" id="companyName" required>
+                        <label>Product Code *</label>
+                        <input type="text" id="productCode" required>
                     </div>
                     <div class="form-group">
-                        <label for="industry">Industry *</label>
-                        <select id="industry" required>
-                            <option value="">Select your industry</option>
-                            <option value="manufacturing">Manufacturing</option>
-                            <option value="distribution">Distribution</option>
-                            <option value="services">Services</option>
-                            <option value="trade">Trade</option>
-                            <option value="nonprofit">Non-Profit</option>
-                            <option value="other">Other</option>
+                        <label>Product Name *</label>
+                        <input type="text" id="productName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select id="productCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Food">Food</option>
+                            <option value="Tools">Tools</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="companySize">Company Size *</label>
-                        <select id="companySize" required>
-                            <option value="">Select company size</option>
-                            <option value="1-10">1-10 employees</option>
-                            <option value="11-50">11-50 employees</option>
-                            <option value="51-200">51-200 employees</option>
-                            <option value="201-500">201-500 employees</option>
-                            <option value="500+">500+ employees</option>
-                        </select>
+                        <label>Stock Quantity *</label>
+                        <input type="number" id="productStock" required min="0">
                     </div>
                     <div class="form-group">
-                        <label for="contactName">Contact Person *</label>
-                        <input type="text" id="contactName" required>
+                        <label>Reorder Level *</label>
+                        <input type="number" id="reorderLevel" required min="0">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" required>
+                        <label>Price (₱) *</label>
+                        <input type="number" id="productPrice" required min="0" step="0.01">
                     </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number *</label>
-                        <input type="tel" id="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Additional Information</label>
-                        <textarea id="message" rows="4" placeholder="Tell us about your business needs..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Submit Request</button>
+                    <button type="submit" class="btn btn-primary" style="width:100%">Add Product</button>
                 </form>
             `;
-            showModal('', formHTML);
+            showModal('Add New Product', form);
+        }
 
-            // Handle form submission
-            setTimeout(() => {
-                document.getElementById('contactForm').addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const formData = {
-                        companyName: document.getElementById('companyName').value,
-                        industry: document.getElementById('industry').value,
-                        companySize: document.getElementById('companySize').value,
-                        contactName: document.getElementById('contactName').value,
-                        email: document.getElementById('email').value,
-                        phone: document.getElementById('phone').value,
-                        message: document.getElementById('message').value,
-                        selectedModules: selectedModules
-                    };
+        function addProduct(e) {
+            e.preventDefault();
+            const product = {
+                id: Date.now(),
+                code: document.getElementById('productCode').value,
+                name: document.getElementById('productName').value,
+                category: document.getElementById('productCategory').value,
+                stock: parseInt(document.getElementById('productStock').value),
+                reorderLevel: parseInt(document.getElementById('reorderLevel').value),
+                price: parseFloat(document.getElementById('productPrice').value)
+            };
+            products.push(product);
+            updateInventoryDisplay();
+            hideModal();
+            showNotification('Product added successfully!');
+        }
 
-                    console.log('Form submitted:', formData);
-                    hideModal();
-                    
-                    showNotification('✓ Thank you! We will contact you within 24 hours.', 5000);
-                    
-                    // Reset form
-                    this.reset();
-                    selectedModules = [];
-                    document.querySelectorAll('.module-badge.selected').forEach(b => b.classList.remove('selected'));
-                });
-            }, 100);
-        });
+        function updateInventoryDisplay() {
+            const tbody = document.getElementById('productTable');
+            if (products.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px">No products yet</td></tr>';
+            } else {
+                tbody.innerHTML = products.map(p => `
+                    <tr>
+                        <td>${p.code}</td>
+                        <td>${p.name}</td>
+                        <td>${p.category}</td>
+                        <td>${p.stock}</td>
+                        <td>₱${p.price.toFixed(2)}</td>
+                        <td><span class="status-badge ${p.stock <= p.reorderLevel ? 'status-low' : 'status-ok'}">${p.stock <= p.reorderLevel ? 'Low Stock' : 'OK'}</span></td>
+                        <td><button class="btn-danger" onclick="deleteProduct(${p.id})">Delete</button></td>
+                    </tr>
+                `).join('');
+            }
+            document.getElementById('totalProducts').textContent = products.length;
+            document.getElementById('lowStock').textContent = products.filter(p => p.stock <= p.reorderLevel).length;
+            document.getElementById('totalValue').textContent = products.reduce((sum, p) => sum + (p.stock * p.price), 0).toFixed(2);
+        }
 
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+        function deleteProduct(id) {
+            if (confirm('Delete this product?')) {
+                products = products.filter(p => p.id !== id);
+                updateInventoryDisplay();
+                showNotification('Product deleted');
+            }
+        }
+
+        function checkStock() {
+            const lowStockItems = products.filter(p => p.stock <= p.reorderLevel);
+            if (lowStockItems.length === 0) {
+                showNotification('All items are well stocked!');
+            } else {
+                const list = lowStockItems.map(p => `<li>${p.name}: ${p.stock} units (Reorder at ${p.reorderLevel})</li>`).join('');
+                showModal('Low Stock Alert', `<ul>${list}</ul>`);
+            }
+        }
+
+        // ACCOUNTING FUNCTIONS
+        function showAddTransaction() {
+            const form = `
+                <form onsubmit="addTransaction(event)">
+                    <div class="form-group">
+                        <label>Type *</label>
+                        <select id="transType" required>
+                            <option value="income">Income</option>
+                            <option value="expense">Expense</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Description *</label>
+                        <input type="text" id="transDesc" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select id="transCategory" required>
+                            <option value="Sales">Sales</option>
+                            <option value="Services">Services</option>
+                            <option value="Salary">Salary</option>
+                            <option value="Rent">Rent</option>
+                            <option value="Utilities">Utilities</option>
+                            <option value="Supplies">Supplies</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount (₱) *</label>
+                        <input type="number" id="transAmount" required min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Date *</label>
+                        <input type="date" id="transDate" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%">Add Transaction</button>
+                </form>
+            `;
+            showModal('Add Transaction', form);
+        }
+
+        function addTransaction(e) {
+            e.preventDefault();
+            const trans = {
+                id: Date.now(),
+                type: document.getElementById('transType').value,
+                description: document.getElementById('transDesc').value,
+                category: document.getElementById('transCategory').value,
+                amount: parseFloat(document.getElementById('transAmount').value),
+                date: document.getElementById('transDate').value
+            };
+            transactions.push(trans);
+            updateAccountingDisplay();
+            hideModal();
+            showNotification('Transaction added successfully!');
+        }
+
+        function updateAccountingDisplay() {
+            const income = transactions.filter(t => t.type === 'income');
+            const expenses = transactions.filter(t => t.type === 'expense');
+            
+            const incomeTotal = income.reduce((sum, t) => sum + t.amount, 0);
+            const expensesTotal = expenses.reduce((sum, t) => sum + t.amount, 0);
+            
+            document.getElementById('totalIncome').textContent = incomeTotal.toFixed(2);
+            document.getElementById('totalExpenses').textContent = expensesTotal.toFixed(2);
+            document.getElementById('netProfit').textContent = (incomeTotal - expensesTotal).toFixed(2);
+            
+            const incomeTable = document.getElementById('incomeTable');
+            if (income.length === 0) {
+                incomeTable.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:30px">No income transactions</td></tr>';
+            } else {
+                incomeTable.innerHTML = income.map(t => `
+                    <tr>
+                        <td>${t.date}</td>
+                        <td>${t.description}</td>
+                        <td>${t.category}</td>
+                        <td>₱${t.amount.toFixed(2)}</td>
+                        <td><button class="btn-danger" onclick="deleteTransaction(${t.id})">Delete</button></td>
+                    </tr>
+                `).join('');
+            }
+            
+            const expensesTable = document.getElementById('expensesTable');
+            if (expenses.length === 0) {
+                expensesTable.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:30px">No expense transactions</td></tr>';
+            } else {
+                expensesTable.innerHTML = expenses.map(t => `
+                    <tr>
+                        <td>${t.date}</td>
+                        <td>${t.description}</td>
+                        <td>${t.category}</td>
+                        <td>₱${t.amount.toFixed(2)}</td>
+                        <td><button class="btn-danger" onclick="deleteTransaction(${t.id})">Delete</button></td>
+                    </tr>
+                `).join('');
+            }
+        }
+
+        function deleteTransaction(id) {
+            if (confirm('Delete this transaction?')) {
+                transactions = transactions.filter(t => t.id !== id);
+                updateAccountingDisplay();
+                showNotification('Transaction deleted');
+            }
+        }
+
+        function switchAccountingTab(e, tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            e.target.classList.add('active');
+            document.getElementById(tab).classList.add('active');
+        }
+
+        function generateFinancialReport() {
+            const income = transactions.filter(t => t.type === 'income');
+            const expenses = transactions.filter(t => t.type === 'expense');
+            const incomeTotal = income.reduce((sum, t) => sum + t.amount, 0);
+            const expensesTotal = expenses.reduce((sum, t) => sum + t.amount, 0);
+            
+            const report = `
+                <div class="report-section">
+                    <h3>Profit & Loss Statement</h3>
+                    <div class="report-item"><strong>Total Income:</strong> <span style="color:#28a745">₱${incomeTotal.toFixed(2)}</span></div>
+                    <div class="report-item"><strong>Total Expenses:</strong> <span style="color:#dc3545">₱${expensesTotal.toFixed(2)}</span></div>
+                    <div class="report-item"><strong>Net Profit:</strong> <span style="color:#0062cc;font-size:1.2em">₱${(incomeTotal - expensesTotal).toFixed(2)}</span></div>
+                </div>
+                <div class="report-section">
+                    <h3>Income by Category</h3>
+                    ${getCategoryBreakdown(income)}
+                </div>
+                <div class="report-section">
+                    <h3>Expenses by Category</h3>
+                    ${getCategoryBreakdown(expenses)}
+                </div>
+            `;
+            showModal('Financial Report', report);
+        }
+
+        function getCategoryBreakdown(items) {
+            const categories = {};
+            items.forEach(item => {
+                categories[item.category] = (categories[item.category] || 0) + item.amount;
             });
-        });
+            return Object.entries(categories).map(([cat, amt]) => 
+                `<div class="report-item"><span>${cat}:</span> <span>₱${amt.toFixed(2)}</span></div>`
+            ).join('');
+        }
 
-        // Add loading animation on page load
-        window.addEventListener('load', function() {
-            document.body.style.opacity = '0';
-            setTimeout(() => {
-                document.body.style.transition = 'opacity 0.5s';
-                document.body.style.opacity = '1';
-            }, 100);
-        });
+        // PAYROLL FUNCTIONS
+        function showAddEmployee() {
+            const form = `
+                <form onsubmit="addEmployee(event)">
+                    <div class="form-group">
+                        <label>Employee ID *</label>
+                        <input type="text" id="empId" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="empName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Position *</label>
+                        <input type="text" id="empPosition" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Basic Monthly Salary (₱) *</label>
+                        <input type="number" id="empSalary" required min="0" step="0.01">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%">Add Employee</button>
+                </form>
+            `;
+            showModal('Add Employee', form);
+        }
 
-        // Track scroll for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        function addEmployee(e) {
+            e.preventDefault();
+            const emp = {
+                id: Date.now(),
+                empId: document.getElementById('empId').value,
+                name: document.getElementById('empName').value,
+                position: document.getElementById('empPosition').value,
+                basicSalary: parseFloat(document.getElementById('empSalary').value)
+            };
+            employees.push(emp);
+            updatePayrollDisplay();
+            hideModal();
+            showNotification('Employee added successfully!');
+        }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '0';
-                    entry.target.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        entry.target.style.transition = 'all 0.6s ease';
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, 100);
-                    observer.unobserve(entry.target);
-                }
+        function updatePayrollDisplay() {
+            const tbody = document.getElementById('employeeTable');
+            if (employees.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px">No employees yet</td></tr>';
+            } else {
+                tbody.innerHTML = employees.map(e => {
+                    const deductions = calculateDeductions(e.basicSalary);
+                    const netSalary = e.basicSalary - deductions.total;
+                    return `
+                        <tr>
+                            <td>${e.empId}</td>
+                            <td>${e.name}</td>
+                            <td>${e.position}</td>
+                            <td>₱${e.basicSalary.toFixed(2)}</td>
+                            <td>₱${deductions.total.toFixed(2)}</td>
+                            <td>₱${netSalary.toFixed(2)}</td>
+                            <td><button class="btn-danger" onclick="deleteEmployee(${e.id})">Delete</button></td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+            
+            document.getElementById('totalEmployees').textContent = employees.length;
+            const totalPayroll = employees.reduce((sum, e) => {
+                const deductions = calculateDeductions(e.basicSalary);
+                return sum + (e.basicSalary - deductions.total);
+            }, 0);
+            document.getElementById('monthlyPayroll').textContent = totalPayroll.toFixed(2);
+        }
+
+        function calculateDeductions(salary) {
+            const sss = salary * 0.045;
+            const philhealth = salary * 0.02;
+            const pagibig = 100;
+            return {
+                sss: sss,
+                philhealth: philhealth,
+                pagibig: pagibig,
+                total: sss + philhealth + pagibig
+            };
+        }
+
+        function deleteEmployee(id) {
+            if (confirm('Delete this employee?')) {
+                employees = employees.filter(e => e.id !== id);
+                updatePayrollDisplay();
+                showNotification('Employee deleted');
+            }
+        }
+
+        function calculatePayroll() {
+            if (employees.length === 0) {
+                showNotification('No employees to calculate payroll', 'error');
+                return;
+            }
+            
+            let report = '<div class="report-section"><h3>Payroll Summary</h3>';
+            employees.forEach(e => {
+                const ded = calculateDeductions(e.basicSalary);
+                report += `
+                    <div style="margin:15px 0; padding:15px; background:#f8f9fa; border-radius:8px">
+                        <strong>${e.name}</strong> (${e.position})<br>
+                        Basic: ₱${e.basicSalary.toFixed(2)}<br>
+                        SSS: ₱${ded.sss.toFixed(2)} | PhilHealth: ₱${ded.philhealth.toFixed(2)} | Pag-IBIG: ₱${ded.pagibig.toFixed(2)}<br>
+                        <strong>Net Pay: ₱${(e.basicSalary - ded.total).toFixed(2)}</strong>
+                    </div>
+                `;
             });
-        }, observerOptions);
+            report += '</div>';
+            showModal('Payroll Calculation', report);
+        }
 
-        document.querySelectorAll('.section, .benefits-section, .cta-section').forEach(section => {
-            observer.observe(section);
+        // SALES & CUSTOMERS FUNCTIONS
+        function showAddCustomer() {
+            const form = `
+                <form onsubmit="addCustomer(event)">
+                    <div class="form-group">
+                        <label>Customer ID *</label>
+                        <input type="text" id="custId" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="custName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Number *</label>
+                        <input type="text" id="custContact" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="custEmail">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%">Add Customer</button>
+                </form>
+            `;
+            showModal('Add Customer', form);
+        }
+
+        function addCustomer(e) {
+            e.preventDefault();
+            const cust = {
+                id: Date.now(),
+                custId: document.getElementById('custId').value,
+                name: document.getElementById('custName').value,
+                contact: document.getElementById('custContact').value,
+                email: document.getElementById('custEmail').value || 'N/A',
+                totalPurchases: 0
+            };
+            customers.push(cust);
+            updateCustomerDisplay();
+            hideModal();
+            showNotification('Customer added successfully!');
+        }
+
+        function updateCustomerDisplay() {
+            const tbody = document.getElementById('customerTable');
+            if (customers.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px">No customers yet</td></tr>';
+            } else {
+                tbody.innerHTML = customers.map(c => `
+                    <tr>
+                        <td>${c.custId}</td>
+                        <td>${c.name}</td>
+                        <td>${c.contact}</td>
+                        <td>${c.email}</td>
+                        <td>₱${c.totalPurchases.toFixed(2)}</td>
+                        <td><button class="btn-danger" onclick="deleteCustomer(${c.id})">Delete</button></td>
+                    </tr>
+                `).join('');
+            }
+            document.getElementById('totalCustomers').textContent = customers.length;
+            updateSalesStats();
+        }
+
+        function deleteCustomer(id) {
+            if (confirm('Delete this customer?')) {
+                customers = customers.filter(c => c.id !== id);
+                updateCustomerDisplay();
+                showNotification('Customer deleted');
+            }
+        }
+
+        function showCreateInvoice() {
+            if (customers.length === 0 || products.length === 0) {
+                showNotification('Add customers and products first!', 'error');
+                return;
+            }
+            
+            const form = `
+                <form onsubmit="createInvoice(event)">
+                    <div class="form-group">
+                        <label>Customer *</label>
+                        <select id="invoiceCustomer" required>
+                            ${customers.map(c => `<option value="${c.id}">${c.name}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Product *</label>
+                        <select id="invoiceProduct" required>
+                            ${products.map(p => `<option value="${p.id}">${p.name} - ₱${p.price}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity *</label>
+                        <input type="number" id="invoiceQty" required min="1">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%">Create Invoice</button>
+                </form>
+            `;
+            showModal('Create Invoice', form);
+        }
+
+        function createInvoice(e) {
+            e.preventDefault();
+            const custId = parseInt(document.getElementById('invoiceCustomer').value);
+            const prodId = parseInt(document.getElementById('invoiceProduct').value);
+            const qty = parseInt(document.getElementById('invoiceQty').value);
+            
+            const customer = customers.find(c => c.id === custId);
+            const product = products.find(p => p.id === prodId);
+            
+            if (product.stock < qty) {
+                showNotification('Insufficient stock!', 'error');
+                return;
+            }
+            
+            const total = product.price * qty;
+            product.stock -= qty;
+            customer.totalPurchases += total;
+            
+            const invoice = {
+                id: Date.now(),
+                date: new Date().toISOString().split('T')[0],
+                customer: customer.name,
+                product: product.name,
+                qty: qty,
+                total: total
+            };
+            invoices.push(invoice);
+            
+            updateInventoryDisplay();
+            updateCustomerDisplay();
+            hideModal();
+            showNotification(`Invoice created! Total: ₱${total.toFixed(2)}`);
+        }
+
+        function updateSalesStats() {
+            const today = new Date().toISOString().split('T')[0];
+            const todaySales = invoices.filter(inv => inv.date === today).reduce((sum, inv) => sum + inv.total, 0);
+            const totalSales = invoices.reduce((sum, inv) => sum + inv.total, 0);
+            
+            document.getElementById('todaySales').textContent = todaySales.toFixed(2);
+            document.getElementById('totalSales').textContent = totalSales.toFixed(2);
+        }
+
+        // PRODUCTION FUNCTIONS
+        function showCreateWorkOrder() {
+            if (products.length === 0) {
+                showNotification('Add products first!', 'error');
+                return;
+            }
+            
+            const form = `
+                <form onsubmit="createWorkOrder(event)">
+                    <div class="form-group">
+                        <label>Product *</label>
+                        <select id="woProduct" required>
+                            ${products.map(p => `<option value="${p.id}">${p.name}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity to Produce *</label>
+                        <input type="number" id="woQty" required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Start Date *</label>
+                        <input type="date" id="woDate" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%">Create Work Order</button>
+                </form>
+            `;
+            showModal('Create Work Order', form);
+        }
+
+        function createWorkOrder(e) {
+            e.preventDefault();
+            const prodId = parseInt(document.getElementById('woProduct').value);
+            const product = products.find(p => p.id === prodId);
+            
+            const wo = {
+                id: Date.now(),
+                orderId: 'WO' + Date.now(),
+                product: product.name,
+                quantity: parseInt(document.getElementById('woQty').value),
+                status: 'Active',
+                startDate: document.getElementById('woDate').value
+            };
+            workOrders.push(wo);
+            updateProductionDisplay();
+            hideModal();
+            showNotification('Work order created successfully!');
+        }
+
+        function updateProductionDisplay() {
+            const tbody = document.getElementById('workOrderTable');
+            if (workOrders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px">No work orders yet</td></tr>';
+            } else {
+                tbody.innerHTML = workOrders.map(wo => `
+                    <tr>
+                        <td>${wo.orderId}</td>
+                        <td>${wo.product}</td>
+                        <td>${wo.quantity}</td>
+                        <td><span class="status-badge ${wo.status === 'Active' ? 'status-pending' : 'status-ok'}">${wo.status}</span></td>
+                        <td>${wo.startDate}</td>
+                        <td>
+                            ${wo.status === 'Active' ? `<button class="btn btn-success" onclick="completeWorkOrder(${wo.id})">Complete</button>` : ''}
+                            <button class="btn-danger" onclick="deleteWorkOrder(${wo.id})">Delete</button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+            
+            document.getElementById('activeOrders').textContent = workOrders.filter(wo => wo.status === 'Active').length;
+            document.getElementById('completedOrders').textContent = workOrders.filter(wo => wo.status === 'Completed').length;
+        }
+
+        function completeWorkOrder(id) {
+            const wo = workOrders.find(w => w.id === id);
+            wo.status = 'Completed';
+            
+            const product = products.find(p => p.name === wo.product);
+            if (product) {
+                product.stock += wo.quantity;
+                updateInventoryDisplay();
+            }
+            
+            updateProductionDisplay();
+            showNotification('Work order completed! Stock updated.');
+        }
+
+        function deleteWorkOrder(id) {
+            if (confirm('Delete this work order?')) {
+                workOrders = workOrders.filter(wo => wo.id !== id);
+                updateProductionDisplay();
+                showNotification('Work order deleted');
+            }
+        }
+
+        function showCreateBOM() {
+            showNotification('Bill of Materials (BOM) feature - Specify raw materials needed for production');
+        }
+
+        // ONLINE STORE FUNCTIONS
+        function showPublishProduct() {
+            if (products.length === 0) {
+                showNotification('Add products to inventory first!', 'error');
+                return;
+            }
+            
+            const form = `
+                <form onsubmit="publishProduct(event)">
+                    <div class="form-group">
+                        <label>Select Product *</label>
+                        <select id="pubProduct" required>
+                            ${products.map(p => `<option value="${p.id}">${p.name} - ₱${p.price}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Online Price (₱) *</label>
+                        <input type="number" id="pubPrice" required min="0" step="0.01">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%">Publish to Store</button>
+                </form>
+            `;
+            showModal('Publish Product Online', form);
+        }
+
+        function publishProduct(e) {
+            e.preventDefault();
+            showNotification('Product published to online store!');
+            hideModal();
+            document.getElementById('publishedProducts').textContent = parseInt(document.getElementById('publishedProducts').textContent) + 1;
+        }
+
+        function viewOnlineOrders() {
+            const tbody = document.getElementById('storeOrderTable');
+            if (storeOrders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px">No online orders yet</td></tr>';
+            }
+            document.getElementById('onlineOrders').textContent = storeOrders.length;
+            document.getElementById('pendingDelivery').textContent = storeOrders.filter(o => o.status === 'Pending').length;
+        }
+
+        // DOCUMENTS FUNCTIONS
+        function showUploadDocument() {
+            const form = `
+                <form onsubmit="uploadDocument(event)">
+                    <div class="form-group">
+                        <label>Document Name *</label>
+                        <input type="text" id="docName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select id="docCategory" required>
+                            <option value="Contract">Contract</option>
+                            <option value="Invoice">Invoice</option>
+                            <option value="Report">Report</option>
+                            <option value="Legal">Legal</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="docDesc" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%">Upload Document</button>
+                </form>
+            `;
+            showModal('Upload Document', form);
+        }
+
+        function uploadDocument(e) {
+            e.preventDefault();
+            const doc = {
+                id: Date.now(),
+                name: document.getElementById('docName').value,
+                category: document.getElementById('docCategory').value,
+                uploadDate: new Date().toISOString().split('T')[0],
+                status: 'Active',
+                description: document.getElementById('docDesc').value || 'N/A'
+            };
+            documents.push(doc);
+            updateDocumentDisplay();
+            hideModal();
+            showNotification('Document uploaded successfully!');
+        }
+
+        function updateDocumentDisplay() {
+            const tbody = document.getElementById('documentTable');
+            if (documents.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:30px">No documents yet</td></tr>';
+            } else {
+                tbody.innerHTML = documents.map(d => `
+                    <tr>
+                        <td>${d.name}</td>
+                        <td>${d.category}</td>
+                        <td>${d.uploadDate}</td>
+                        <td><span class="status-badge status-ok">${d.status}</span></td>
+                        <td><button class="btn-danger" onclick="deleteDocument(${d.id})">Delete</button></td>
+                    </tr>
+                `).join('');
+            }
+            document.getElementById('totalDocuments').textContent = documents.length;
+        }
+
+        function deleteDocument(id) {
+            if (confirm('Delete this document?')) {
+                documents = documents.filter(d => d.id !== id);
+                updateDocumentDisplay();
+                showNotification('Document deleted');
+            }
+        }
+
+        function showSignDocument() {
+            if (documents.length === 0) {
+                showNotification('Upload documents first!', 'error');
+                return;
+            }
+            showNotification('E-Signature feature - Select document to sign digitally');
+        }
+
+        // REPORTS FUNCTIONS
+        function generateSalesReport() {
+            if (invoices.length === 0) {
+                showNotification('No sales data available', 'error');
+                return;
+            }
+            
+            const report = `
+                <div class="report-section">
+                    <h3>Sales Summary</h3>
+                    <div class="report-item"><strong>Total Invoices:</strong> ${invoices.length}</div>
+                    <div class="report-item"><strong>Total Revenue:</strong> ₱${invoices.reduce((sum, inv) => sum + inv.total, 0).toFixed(2)}</div>
+                    <div class="report-item"><strong>Average Sale:</strong> ₱${(invoices.reduce((sum, inv) => sum + inv.total, 0) / invoices.length).toFixed(2)}</div>
+                </div>
+                <div class="report-section">
+                    <h3>Recent Sales</h3>
+                    ${invoices.slice(-5).reverse().map(inv => 
+                        `<div class="report-item">
+                            <span>${inv.date} - ${inv.customer}</span>
+                            <span>₱${inv.total.toFixed(2)}</span>
+                        </div>`
+                    ).join('')}
+                </div>
+            `;
+            showModal('Sales Report', report);
+        }
+
+        function generateInventoryReport() {
+            if (products.length === 0) {
+                showNotification('No inventory data available', 'error');
+                return;
+            }
+            
+            const totalValue = products.reduce((sum, p) => sum + (p.stock * p.price), 0);
+            const report = `
+                <div class="report-section">
+                    <h3>Inventory Overview</h3>
+                    <div class="report-item"><strong>Total Products:</strong> ${products.length}</div>
+                    <div class="report-item"><strong>Total Inventory Value:</strong> ₱${totalValue.toFixed(2)}</div>
+                    <div class="report-item"><strong>Low Stock Items:</strong> ${products.filter(p => p.stock <= p.reorderLevel).length}</div>
+                </div>
+                <div class="report-section">
+                    <h3>Stock by Category</h3>
+                    ${getStockByCategory()}
+                </div>
+                <div class="report-section">
+                    <h3>Top 5 Most Valuable Items</h3>
+                    ${products
+                        .map(p => ({...p, value: p.stock * p.price}))
+                        .sort((a, b) => b.value - a.value)
+                        .slice(0, 5)
+                        .map(p => `<div class="report-item"><span>${p.name}</span> <span>₱${p.value.toFixed(2)}</span></div>`)
+                        .join('')}
+                </div>
+            `;
+            showModal('Inventory Report', report);
+        }
+
+        function getStockByCategory() {
+            const categories = {};
+            products.forEach(p => {
+                if (!categories[p.category]) {
+                    categories[p.category] = {count: 0, value: 0};
+                }
+                categories[p.category].count += p.stock;
+                categories[p.category].value += p.stock * p.price;
+            });
+            return Object.entries(categories).map(([cat, data]) => 
+                `<div class="report-item">
+                    <span>${cat}: ${data.count} units</span>
+                    <span>₱${data.value.toFixed(2)}</span>
+                </div>`
+            ).join('');
+        }
+
+        function exportAllReports() {
+            const allData = {
+                products: products,
+                transactions: transactions,
+                employees: employees,
+                customers: customers,
+                invoices: invoices,
+                workOrders: workOrders,
+                documents: documents,
+                generatedDate: new Date().toISOString()
+            };
+            
+            const dataStr = JSON.stringify(allData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `business-report-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            
+            showNotification('All reports exported successfully!');
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            updateInventoryDisplay();
+            updateAccountingDisplay();
+            updatePayrollDisplay();
+            updateCustomerDisplay();
+            updateProductionDisplay();
+            updateDocumentDisplay();
+            viewOnlineOrders();
         });
-
-        // Console welcome message
-        console.log('%c🚀 Welcome to Business ERP Solution!', 'color: #0062cc; font-size: 20px; font-weight: bold;');
-        console.log('%cExplore all features by clicking on the cards!', 'color: #666; font-size: 14px;');
     </script>
 </body>
 </html>
